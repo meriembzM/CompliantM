@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="sidebar.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>sidebar</title>
+</head>
+<body>
+    <aside  class="sidebar"  id="sidebar">
+        <ul>
+            
+            <div class="sidebar_header">
+                <div class="sidebar_logo">USER</div>
+                <button id="toggle-btn" onclick="toggleSidebar()">
+                    <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#07074d" viewBox="0 0 24 24" width="24px" height="24px">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke="#07074d" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="link-text"></span>
+                </a>
+                </button>
+              </div>
+              <br>
+              
+              <li>
+                <a href="myprofaile.php">
+                  <i class="fa-solid fa-user"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              
+              
+           
+                <li>
+                  <a href="updatemyprofile.php">
+                      <i class="fa-solid fa-user"></i>
+                      <span>Update My Profile</span>
+                  </a>
+                </li>
+                  <li>
+                      <a href ="changepassword.php">
+                      <i class="fa-solid fa-key"></i>
+                      <span>change a password</span>
+                    </a>
+                  </li>
+
+                <li>
+                  <a href="complaint.php">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>complaint</span>
+                  </a>
+                </li>
+                               
+         </ul> 
+         <div class="sidebar-footer">
+            <button id="theme-toggle" class="btn" >Toggle Dark Mode</button>
+        </div>
+
+</aside>
+</body>
+</html>

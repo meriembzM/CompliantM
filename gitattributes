@@ -1,0 +1,24 @@
+# Force LF (Line Feed) for all text files
+*.php     text eol=lf
+*.html    text eol=lf
+*.css     text eol=lf
+*.js      text eol=lf
+*.sql     text eol=lf
+*.json    text eol=lf
+*.xml     text eol=lf
+*.md      text eol=lf
+*.txt     text eol=lf
+
+# Treat shell scripts and config files as LF-only
+*.sh      text eol=lf
+*.env     text eol=lf
+
+# Binary files - no end-of-line normalization
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.pdf     binary
+*.ico     binary
+
+
