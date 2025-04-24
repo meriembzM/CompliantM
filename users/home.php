@@ -48,7 +48,7 @@ include('includes/sidebar.html');
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="../image/undraw_software-engineer_xv60.svf" alt="" class="hero-image">
+                    <img src="../image/undraw_software-engineer_xv60 (1).svg" alt="" class="hero-image">
                 </div>
                     
             </div>

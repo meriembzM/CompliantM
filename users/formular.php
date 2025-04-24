@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
-include('includes/connection.php');
+include('../users/includes/connection.php');
 
 if (!isset($_SESSION['login']) || empty($_SESSION['login'])) {
     header('Location: login.php');
@@ -9,14 +9,12 @@ if (!isset($_SESSION['login']) || empty($_SESSION['login'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $complaint = mysqli_real_escape_string($conn, $_POST['complaint']);
-    $type = mysqli_real_escape_string($conn, $_POST['type']);
-    $priority = mysqli_real_escape_string($conn, $_POST['priority']);
+    $service = mysqli_real_escape_string($conn, $_POST['service']);
+    $complaint_level = mysqli_real_escape_string($conn, $_POST['complaint_level']);
+    $description = mysqli_real_escape_string($conn, $_POST['text']);
 
-    $sql = "INSERT INTO complaints (name, email, complaint, type, priority, status, created_at)
-            VALUES ('$name', '$email', '$complaint', '$type', '$priority', 'Pending', NOW())";
+    $sql = "INSERT INTO reclamation (service, niveau, description) 
+            VALUES ('$service', '$complaint_level', '$description')";
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>alert('Complaint submitted successfully');</script>";
@@ -25,41 +23,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="complaint.css">
     <title>Complaint Form</title>
+    <link rel="stylesheet" href="complaint.css">
+    <link rel="stylesheet" href="sidbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="complaint.php" method="post">
-        <div class="container">
-            <h2>Complaint Form</h2>
-            <div class="input-box">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<?php echo $_SESSION['name']; ?>" required>
+    <?php include("sidbar.html"); ?>
+    <h1 style="text-align: right;">Complaint</h1>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
-
-                <label for="complaint">Complaint</label>
-                <textarea id="complaint" name="complaint" rows="4" placeholder="Describe your complaint..." required></textarea>
-
-                <label for="type">Type of Complaint</label>
-                <input type="text" id="type" name="type" placeholder="e.g., Service, Product..." required>
-
-                <label for="priority">Priority</label>
-                <select name="priority" id="priority" required>
-                    <option value="">--Select Priority--</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Submit Complaint</button>
+    <form method="POST" action="">
+        <div class="input1">
+            <label for="service">Services</label>
+            <select name="service" id="service" required>
+                <option value="">-- Select Service --</option>
+                <?php
+                $query = "SELECT name FROM service"; 
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value=\"" . htmlspecialchars($row['name']) . "\">" . htmlspecialchars($row['name']) . "</option>";
+                }
+                ?>
+            </select>
         </div>
+
+        <div class="input2">
+            <label for="complaint_level">Complaint Level</label>
+            <select name="complaint_level" id="complaint_level" required>
+                <option value="">-- Select Level --</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+
+        <div class="input3">
+            <label for="text">Your Complaint</label>
+            <textarea name="text" id="text" placeholder="Describe your complaint..." rows="6" required></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
     </form>
+
+    <script src="complaint.js"></script>
 </body>
 </html>

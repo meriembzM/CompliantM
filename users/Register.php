@@ -20,10 +20,11 @@ if (!isset($_SESSION['login']) || empty($_SESSION['login'])) {
        <div class="container">
         <h2>Sign in</h2>
         <div class="input-box">
-            <label for="name">name</label>
-            <input  type="text" id="name" placeholder="nama" required>
-            <label for="email">Email</label>
-            <input  type="email" id="email" placeholder=" email" required>
+            <label for="name">Name</label>
+        <input name="name" type="text" id="name" placeholder="name" required>
+        <label for="email">Email</label>
+       <input name="email" type="email" id="email" placeholder="email" required>
+       <input name="password" type="password" placeholder="Password" required>
             <br>
             <label for="password">Password</label>
             <input type="password"  placeholder="Password" required >

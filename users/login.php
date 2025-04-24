@@ -2,56 +2,44 @@
 session_start();
 error_reporting(0);
 include("includes/connection.php");
-if(isset($_POST['submit']))
-{
-$ret=mysqli_query($bd, "SELECT * FROM clients WHERE userEmail='".$_POST['username']."' and password='".md5($_POST['password'])."'");
-$num=mysqli_fetch_array($ret);
-if($num>0)
-{
-$extra="change-password.php";
-$_SESSION['login']=$_POST['name'];
-$_SESSION['id']=$num['id'];
-$host=$_SERVER['HTTP_HOST'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=1;
-$log=mysqli_query($bd, "insert into userlog(uid,username,userip,status) values('".$_SESSION['id']."','".$_SESSION['login']."','$uip','$status')");
-$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-exit();
-}
-else
-{
-$_SESSION['login']=$_POST['username'];	
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=0;
-mysqli_query($bd, "insert into userlog(username,userip,status) values('".$_SESSION['login']."','$uip','$status')");
-$errormsg="Invalid username or password";
-$extra="login.php";
-
-}
-}
 
 
 
-if(isset($_POST['change']))
-{
-   $email=$_POST['email'];
-    $contact=$_POST['contact'];
-    $password=md5($_POST['password']);
-$query=mysqli_query($bd, "SELECT * FROM users WHERE userEmail='$email' and contactNo='$contact'");
-$num=mysqli_fetch_array($query);
-if($num>0)
-{
-mysqli_query($bd, "update users set password='$password' WHERE userEmail='$email' and contactNo='$contact' ");
-$msg="Password Changed Successfully";
+$error = "";
 
-}
-else
-{
-$errormsg="Invalid email id or Contact no";
-}
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+   
+    $stmt = mysqli_prepare($conn, "SELECT * FROM clients WHERE userEmail = ?");
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['login'] = $email;
+        $_SESSION['id'] = $user['id'];
+
+        $uip = $_SERVER['REMOTE_ADDR'];
+        $status = 1;
+
+        mysqli_query($conn, "INSERT INTO userlog(uid,username,userip,status) VALUES ('{$user['id']}', '$email', '$uip', '$status')");
+
+        header("Location: change-password.php");
+        exit();
+    } else {
+        $_SESSION['login'] = $email;
+        $uip = $_SERVER['REMOTE_ADDR'];
+        $status = 0;
+
+        mysqli_query($conn, "INSERT INTO userlog(username,userip,status) VALUES ('$email', '$uip', '$status')");
+        $error = "Invalid email or password";
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +73,7 @@ $errormsg="Invalid email id or Contact no";
 
         <button type="submit" class="btn">Sign in</button>
         <div class="register-link">
-            <p>Don't have an account? <a href="./Register.php">Sign up here</a>
+            <p>Don't have an account? <a href="Register.php">Sign up here</a>
             </p>
         </div>
        </div>

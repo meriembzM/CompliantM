@@ -20,6 +20,7 @@ body {
     font-family: 'Playfair Display', serif;
     margin: 0;
     display: flex;
+    overflow: hidden;
 }
 
 .sidebar {
@@ -29,12 +30,14 @@ body {
     padding: 1em;
     background-color: var(--base-clr);
     border-right: 1px solid var(--line-clr);
-    position: sticky;
+    position: fixed;
     top: 0;
     display: flex;
     flex-direction: column;
     transition: 300ms ease-in-out;
+    transition: width 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
+    z-index: 1000;
 }
 
 .sidebar_logo {
@@ -71,11 +74,7 @@ body {
 
 
 }
-.sidebar a:hover{
-background-color: var(--hover-clr);
-border-radius: 15px;
 
-}
 .sidebar_header {
   display: flex;
   align-items: center;
@@ -85,7 +84,7 @@ border-radius: 15px;
 
 .sidebar_logo {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--accent-clr);
   margin: 0;
 }
@@ -98,6 +97,7 @@ border-radius: 15px;
   display: flex;
   align-items: center;
   color: var(--text-clr);
+ 
 }
 
 #toggle-btn svg {
@@ -169,3 +169,11 @@ body.dark-mode a {
 body.dark-mode .sidebar a:hover {
   background-color: #3c3c55;
 }
+.sidebar.collapsed a {
+  justify-content: center;
+}
+
+.sidebar.collapsed a span {
+  display: none;
+}
+
