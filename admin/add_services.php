@@ -33,9 +33,9 @@ if ($query) {
     
 </head>
 <body>
-    <?php include('header.php'); ?>
-    <?php include('sidebaradmin.html'); ?>
+  
 
+<?php include('sidebaradmin.php'); ?>
     <div class="container">
         <h2>Add Service</h2>
         <form method="POST" action="serviceR.php">

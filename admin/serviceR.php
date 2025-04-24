@@ -17,8 +17,8 @@ $result = mysqli_query($conn, $res);
     <title>Services List</title>
 </head>
 <body>
-    <?php include('header.php'); ?>
-    <?php include('sidebaradmin.html'); ?> 
+  
+<?php include('sidebaradmin.php'); ?>
 
     <div class="container">
         <h2>Services List</h2>

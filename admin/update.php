@@ -1,5 +1,8 @@
 <?php
+session_start();
+include("../users/includes/connection.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updatebtn'])){
+ $id = $_POST['id'];
  $username = $_POST['name'];
  $email = $_POST['email'];
  $password = $_POST['password'];
@@ -21,11 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updatebtn'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/sidebaradmin.css">
+    <link rel="stylesheet" href="../css/updata.css">
     <title>Admin |update</title>
 </head>
 <body>
-<?php include('header.php'); ?>
-<?php include('sidebaradmin.html'); ?>
+
+<?php include('sidebaradmin.php'); ?>
 <form class="form" method="POST" action="update.php">
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>

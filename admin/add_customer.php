@@ -32,8 +32,8 @@ if (isset($_POST['submit'])) {
 
 </head>
 <body>
-<?php include('header.php'); ?>
-<?php include('sidebaradmin.html'); ?>
+
+<?php include('sidebaradmin.php'); ?>
 <h2>Add Customer</h2>
 <div class="container">
    
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
             <input type="password" name="password" required>
 
             <label for="address">Address:</label>
-            <input type="text" name="address" required>
+            <input type="text"class="state" name="address" required>
             <label for="state">State:</label>
 <select name="state" class="state" required>
     <option value="">-- Select a Wilaya --</option>

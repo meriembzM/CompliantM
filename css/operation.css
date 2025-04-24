@@ -205,7 +205,20 @@ button {
 .btn-delete:hover {
     background-color: #c82333;
 }
+a{
+    text-decoration: none;
+    color: white;
 
+}
+a:visited {
+    color: #ccc;
+}
+
+
+a:hover {
+    opacity: 0.8;
+    text-decoration: underline; 
+}
 @media (max-width: 768px) {
     .sidebar {
         width: 200px;

@@ -41,8 +41,8 @@ $query_run = mysqli_query($conn, $query);
     <title>Admin | Operation</title>
 </head>
 <body>
-    <?php include('header.php'); ?>
-    <?php include('sidebaradmin.html'); ?>
+   
+<?php include('sidebaradmin.php'); ?>
     
     <div class="main-content">
         <div class="menu-container">

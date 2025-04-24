@@ -19,8 +19,8 @@ include("../users/includes/connection.php");
     <title>Home | Admin</title>
 </head>
 <body>
-    <?php include('header.php'); ?>
-    <?php include('sidebaradmin.html'); ?>
+
+<?php include('sidebaradmin.php'); ?>
     <script src="../js/mode.js"></script>
     <script src="../js/app.js"></script>
 </body>

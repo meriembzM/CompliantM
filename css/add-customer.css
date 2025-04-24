@@ -40,7 +40,7 @@ h2::after {
 }
 
 form {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     background-color: #ffffff;
     padding: 2.5rem;
@@ -75,7 +75,12 @@ label {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
+.state{
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    background-color: #f8fafc;
 
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],
