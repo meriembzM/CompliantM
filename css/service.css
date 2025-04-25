@@ -22,7 +22,7 @@ body {
 }
 
 .container h2 {
-    margin-top: 50%;
+    
     text-align: left;
     margin-bottom: 30px;
     color: #052659;
@@ -40,6 +40,8 @@ form {
 }
 
 .form-group {
+    
+margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 15px;

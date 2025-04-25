@@ -3,7 +3,6 @@ session_start();
 error_reporting(0);
 include('../users/includes/connection.php'); 
 
-// التحقق من تسجيل الدخول (اختياري)
 // if (!isset($_SESSION['login']) || empty($_SESSION['login'])) {
 //     header('Location: login.php');
 //     exit;

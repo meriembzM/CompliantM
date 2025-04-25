@@ -37,13 +37,13 @@ $query_run = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/sidebaradmin.css">
-    <link rel="stylesheet" href="../css/operation.css">
+    <link rel="stylesheet" href="../css/operations.css">
     <title>Admin | Operation</title>
 </head>
 <body>
    
-<?php include('sidebaradmin.php'); ?>
-    
+
+    <?php include('sidebaradmin.php')?>
     <div class="main-content">
         <div class="menu-container">
             <div class="menu-item" onclick="toggleMenu()">Create</div>
@@ -54,16 +54,14 @@ $query_run = mysqli_query($conn, $query);
                     <input name="name" type="text" id="name" placeholder="Name" required>
                     <label for="email">Email</label>
                     <input name="email" type="email" id="email" placeholder="Email" required>
-                    <label for="password">Password</label>
-                    <input name="password" type="password" placeholder="Password" required>    
-                    <br> 
-                    <input type="submit" value="Create" class="btn-create">
+                    <button type="submit" > submit</button>
                 </form>
             </div>
         </div>
     </div>
-    
-    <table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing: 0;">
+    <div class="container">
+        
+    <table class="table table-bordered" class="table-wrapper" id="dataTable" style="width: 100%; cellspacing: 0;">
         <thead>
             <tr>
                 <th colspan="6">User List</th>
@@ -87,8 +85,11 @@ $query_run = mysqli_query($conn, $query);
                         <td><?php echo htmlspecialchars($row['name']); ?></td>
                         <td><?php echo htmlspecialchars($row['email']); ?></td>
                         <td>****</td> 
-                        <td><button type="button" name="updatebtn" class="btn btn-update" ><a href="update.php?id=<?php echo $row['ID']; ?>">Update</a></button></td>
-                        <td><button type="button" class="btn btn-delete"><a href="delete.php?id=<?php echo $row['ID']; ?>">Delete</a></button></td>
+                        <td><button type="button" name="updatebtn" class="btn btn-update" ><a href="update.php?ID=<?php echo $row['ID']; ?>">Update</a></button></td>
+                        <form action="delete.php" method="POST">
+                         <input type="text" name="delete_id" value="<?php echo $row['ID']; ?>" hidden>   
+                        <td><button type="submit" name="deletebtn" class="btn btn-delete">Delete</button></td>
+                        </form>
                     </tr>
                     <?php
                 }
@@ -98,7 +99,7 @@ $query_run = mysqli_query($conn, $query);
             ?>
         </tbody>
     </table>
-
+        </div>
     <script src="../js/opr.js"></script>
     <script src="../js/mode.js"></script>
     <script src="../js/app.js"></script>

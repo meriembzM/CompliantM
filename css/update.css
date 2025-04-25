@@ -1,20 +1,90 @@
-*{
+:root {
+    --base-clr: #eeeeef;
+    --line-clr: #42434a;
+    --hover-clr: #e3e4e9;
+    --text-clr: #060611;
+    --accent-clr: #052659;
+    --secondary-text-clr: #b0b3c1;
+    --btn-bg: #0657a8;
+    --btn-hover-bg: #0077cc;
+    --input-border: #0e0d0d;
+    --input-focus-border: #1e90ff;
+    --input-bg: #fff;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #f2f2f2;
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.form{
-    background-color: #fff;
-    padding: 20px;
+
+.form {
+    background-color: var(--input-bg);
+    padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    color: var(--accent-clr);
+    text-align: center;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-clr);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    color: var(--text-clr);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--input-focus-border);
+    outline: none;
+}
+
+.btn-create {
+    background-color: var(--btn-bg);
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.btn-create:hover {
+    background-color: var(--btn-hover-bg);
 }

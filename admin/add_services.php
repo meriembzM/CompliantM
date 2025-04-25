@@ -37,9 +37,10 @@ if ($query) {
 
 <?php include('sidebaradmin.php'); ?>
     <div class="container">
-        <h2>Add Service</h2>
+       
         <form method="POST" action="serviceR.php">
             <div class="form-group">
+            <h2>Add Service</h2>
                 <label for="service_code">Service Code:</label>
                 <input type="text" name="service_code" required>
                 

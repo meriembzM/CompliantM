@@ -9,35 +9,47 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
     $state = $_POST['state'];
 
-    $query = mysqli_query($conn, "INSERT INTO clients (name, email, password, address, state) 
-        VALUES ('$name', '$email', '$password', '$address', '$state')") or die(mysqli_error($conn));
-
-    if ($query) {
-        echo "<script>alert('Customer created successfully');</script>";
+  
+    $query1 = mysqli_query($conn, "SELECT * FROM clients WHERE email='$email'");
+    
+    if (mysqli_num_rows($query1) > 0) {
+        echo "Email id already in use";
     } else {
-        echo "<script>alert('Something went wrong, please try again.');</script>";
+        $query = mysqli_query($conn, "INSERT INTO clients (name, email, password, address, state) 
+            VALUES ('$name', '$email', '$password', '$address', '$state')") or die(mysqli_error($conn));
+
+        if ($query) {
+            echo "<script>alert('Customer created successfully');</script>";
+        } else {
+            echo "<script>alert('Something went wrong, please try again.');</script>";
+        }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/add-customer.css">
+    <link rel="stylesheet" href="../css/add_customer.css">
     <link rel="stylesheet" href="../css/sidebaradmin.css">
     <link rel="stylesheet" href="../css/header.css">
     <title>Add Customer</title>
 
 </head>
 <body>
+<div class="wrapper">
+        <div class="sidebar">
+           
+            <?php include('sidebaradmin.php'); ?>
+        </div>
 
-<?php include('sidebaradmin.php'); ?>
-<h2>Add Customer</h2>
 <div class="container">
-   
+
     <form method="POST" action="">
+    <h2>Add Customer</h2>
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="name" required>
@@ -116,10 +128,13 @@ if (isset($_POST['submit'])) {
 </select>
 
 
-            <button type="submit" name="submit">Add Customer</button>
+<button type="submit" name="submit">Add Customer</button>
+
         </div>
     </form>
 </div>
+</div>
+
 <script src="../js/mode.js"></script>
 <script src="../js/app.js"></script>
 </body>
